@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moodify.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,10 @@ namespace Moodify
 {
     public class App : Application
     {
+
+        public static NavigationPage NavigationPage { get; private set; }
+        public static RootPage RootPage;
+
         public App()
         {
             // The root page of your application
@@ -28,6 +33,18 @@ namespace Moodify
             };
 
             MainPage = new NavigationPage(content);
+        }
+
+        public static bool MenuIsPresented
+        {
+            get
+            {
+                return RootPage.IsPresented;
+            }
+            set
+            {
+                RootPage.IsPresented = value;
+            }
         }
 
         protected override void OnStart()
