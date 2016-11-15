@@ -206,7 +206,7 @@ listView.ItemsSource.Add("monochrome");
 If you want this ItemSource to keep update when the array is changed, you need to use an Observable Collection:
 
 ```
-ObservableCollection<Employees> employeeList = new ObservableCollection<Employess>();
+ObservableCollection<Employees> employeeList = new ObservableCollection<Employees>();
 listView.ItemsSource = employeeList;
 
 //Mr. Mono will be added to the ListView because it uses an ObservableCollection
