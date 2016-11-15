@@ -2,6 +2,9 @@
 
 You will learn the key elements we use to create User Interfaces in Xamarin.Forms.
 
+PowerPoint Slides: [https://1drv.ms/p/s!AinX0aPrC6uBsFIAr5O9NMaJ7Odm](https://1drv.ms/p/s!AinX0aPrC6uBsFIAr5O9NMaJ7Odm)
+
+
 # 0. Making a new Xamarin Forms Project
 
 File > New Project > Visual C# > Blank Xaml App (Xamarin.Forms Portable) > Name it App1.
