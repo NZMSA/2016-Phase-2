@@ -8,12 +8,12 @@ Students will build a complete Xamarin app from scratch, which will provide them
 
 ## Day 1
 
-Day 1 will focus on introducing the students to MSA Phase 2, talking about the assessments and assessment scenarios. Students will learn about the various components of Xamarin with a simple cross-platform app before diving into a comprehensive solution that will prepare them for assessments. On day one a basic structure of the application would have been created, and students would have been exposed to API’s, in preparation for the following days.
+Day 1 will focus on introducing the students to MSA Phase 2, talking about the assessments and assessment scenarios. Students will learn about the various components of Xamarin with a simple cross-platform app before diving into a comprehensive solution that will prepare them for assessments. On day one a basic structure of the application would have been created, and students would have been exposed to API’s.
 
 ## Day 2
 
-We will be expanding on the solution that we worked on during the first day by adding database functionality. This database will store information regarding the mood detected, the time the query was made and other relevant information which can be viewed later. Day two will focus on adding a user interface to the backend as well.
+Day 2 involves creating a basic bot using the Microsoft Bot Framework, making API calls to form an end-to-end solution
 
 ## Day 3
 
-The third and final day will be focussed on the advanced features that are required for the assessment. These features will include analytical information gathering, offline synchronisation, and added security using Facebook authentication.
+The third and final day will consist of expanding on the solution that we worked on during the first day by adding database functionality. This database will store information regarding the mood detected, the time the query was made and other relevant information which can be viewed later. 
