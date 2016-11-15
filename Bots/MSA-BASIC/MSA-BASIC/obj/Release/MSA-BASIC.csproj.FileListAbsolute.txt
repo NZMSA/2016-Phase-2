@@ -1,0 +1,39 @@
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Bot Application1.dll.config
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Bot Application1.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Bot Application1.pdb
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Autofac.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Chronic.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Bot.Builder.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Bot.Connector.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Rest.ClientRuntime.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Newtonsoft.Json.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Net.Http.Formatting.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Web.Http.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Web.Http.WebHost.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Autofac.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Bot.Builder.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Bot.Connector.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.Rest.ClientRuntime.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\Newtonsoft.Json.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.IdentityModel.Tokens.Jwt.pdb
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Net.Http.Formatting.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Web.Http.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\System.Web.Http.WebHost.xml
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\obj\Release\MSA-BASIC.csprojResolveAssemblyReference.cache
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\obj\Release\Bot Application1.dll
+C:\Users\jayja\Documents\Visual Studio 2015\Projects\MSA-BASIC\MSA-BASIC\obj\Release\Bot Application1.pdb
