@@ -14,6 +14,13 @@
 
 ## 3. Sending Image to be analysed
 
+First add the namespace of the newly added NuGet package.
+
+```
+using Microsoft.ProjectOxford.Vision;
+using Microsoft.ProjectOxford.Vision.Contract;
+```
+
 Add the following line of code.
 
 ```
