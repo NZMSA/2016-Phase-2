@@ -12,6 +12,8 @@ Can usually be added using Xaml or programatically (C#).
 
 They are used for a basic horizontal or vertical layout.
 
+Replace the code in Main.xaml with the following code:
+
 ```
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
