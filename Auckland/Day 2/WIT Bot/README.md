@@ -24,7 +24,7 @@ using Microsoft.ProjectOxford.Vision.Contract;
 Add the following line of code.
 
 ```
-VisionServiceClient VisionServiceClient = new VisionServiceClient("YOUR API KEY");
+VisionServiceClient VisionServiceClient = new VisionServiceClient("81ca643d8b1d46d8a2c953c9afc3c147");
 
 AnalysisResult analysisResult = await VisionServiceClient.DescribeAsync(activity.Attachments[0].ContentUrl, 3);
 
