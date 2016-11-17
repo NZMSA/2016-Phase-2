@@ -1,6 +1,5 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
@@ -17,50 +16,32 @@ namespace Moodify
 
         private async void TakePicture_Clicked(object sender, System.EventArgs e)
         {
-            await CrossMedia.Current.Initialize();
 
             if (!CrossMedia.Current.IsCameraAvailable || !CrossMedia.Current.IsTakePhotoSupported)
             {
-                await DisplayAlert("No Camera", ":( No camera available.", "OK");
+                await DisplayAlert("No Camera", ":( No camera avaialble.", "OK");
                 return;
             }
 
-            var cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
-            var storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
-
-            if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatus.Granted)
+            var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
             {
-                var results = await CrossPermissions.Current.RequestPermissionsAsync(new[] { Permission.Camera, Permission.Storage });
-                cameraStatus = results[Permission.Camera];
-                storageStatus = results[Permission.Storage];
-            }
+                DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
+                Directory = "Moodify",
+                Name = $"{DateTime.UtcNow}.jpg",
+                CompressionQuality = 92
+            });
 
-            if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+            if (file == null)
+                return;
+
+            await DisplayAlert("File Location", file.Path, "OK");
+
+            image.Source = ImageSource.FromStream(() =>
             {
-                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-                {
-                    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
-                    Directory = "Moodify",
-                    Name = $"{DateTime.UtcNow}.jpg",
-                    CompressionQuality = 92
-                });
-
-                if (file == null)
-                    return;
-
-                image.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    file.Dispose();
-                    return stream;
-                });
-            }
-            else
-            {
-                await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
-                //On iOS you may want to send your user to the settings screen.
-                //CrossPermissions.Current.OpenAppSettings();
-            }
+                var stream = file.GetStream();
+                file.Dispose();
+                return stream;
+            });
 
         }
     }
