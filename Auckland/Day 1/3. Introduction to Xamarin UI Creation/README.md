@@ -133,7 +133,18 @@ namespace App1
 }
 
 ```
+To link this to the first page, change the code inside the OnButtonClicked method inside MainPage.xaml.cs to: 
 
+```
+async void OnButtonClicked(object sender, EventArgs args)
+{
+    Button button = (Button)sender;
+    await DisplayAlert("Clicked!",
+        "The button labeled '" + button.Text + "' has been clicked",
+        "OK");
+    await Navigation.PushModalAsync(new Grid1());
+}
+```
 
 # 2. Other Important Elements
 
