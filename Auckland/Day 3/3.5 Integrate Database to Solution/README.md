@@ -13,22 +13,34 @@ As our server is hosted as a web application we could just use a HTTP request. H
 ## 1. Postman requests
 TBC photos
 Lets first see how our data looks like by making a GET request to https://MOBILE_APP_URL.azurewebsites.net (replace `MOBILE_APP_URL` with your server name, for this demo its "mywebsite").
-![GET Request](photos/web_complete.jpg)
+TBC
 
 Here we can see it matches well with what we designed for our server
-![Data](photos/web_complete.jpg)
+TBC
 
 Now with a POST request, the field namess of need to match with what we got from our GET Request (values dont!).
 (Note the body-content type is `JSON` because xx)
-![POST Request](photos/web_complete.jpg)
+TBC
 
 Now we see that it has added the new entry to our database.
-![Data](photos/web_complete.jpg)
+TBC
 
 ## 2. Xamarin
 
-### 2.1 Creating Model Classes
-Lets now create model class `Timeline` to represent the tables in our database
+### 2.1 Referencing Azure Mobile Services
+At the earlier sections, we would have already added it to our Nuget Packages. If not
+
+- For Visual Studio: Right-click your project, click Manage NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, then click Install.
+- For Xamarin Studio: Right-click your project, click Add > Add NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, and then click Add Package.
+
+If we want to use this SDK we add the following using statement
+```C#
+using Microsoft.WindowsAzure.MobileServices;
+``` 
+
+### 2.2 Creating Model Classes
+Lets now create model class `Timeline` to represent the tables in our database. 
+So in `Moodify (Portable)`, create a folder named `DataModels` and then create a `Timeline.cs` file with,
 
 ```C#
 public class Timeline
@@ -76,23 +88,15 @@ public class Timeline
 - Our field names for our client types can then be renamed if we want (like the field `date`)
 - All client types must contain a field member mapped to `Id` (default a string). The `Id` is required to perform CRUD operations and for offline sync (not discussed) 
 
-### 2.2 Referencing Azure Mobile Services
-At the earlier sections, we would have already added it to our Nuget Packages. If not
-
-- For Visual Studio: Right-click your project, click Manage NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, then click Install.
-- For Xamarin Studio: Right-click your project, click Add > Add NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, and then click Add Package.
-
-If we want to use this SDK we add the following using statement
-```C#
-using Microsoft.WindowsAzure.MobileServices;
-``` 
-
 ### 2.3 Initalize the Azure Mobile Client
 Lets now create a singleton class named `AzureManager` that will look after our interactions with our web server. Add this to the class
-(NOTE: replace `MOBILE_APP_URL` with your server name, for this demo its "mywebsite")
+(NOTE: replace `MOBILE_APP_URL` with your server name, for this demo its "https://hellotheretest.azurewebsites.net/")
+
+
+So in `Moodify (Portable)`, create a `AzureManager.cs` file with,
 
 ```C#
-public partial class AzureManager
+public class AzureManager
     {
 
         private static AzureManager instance;
@@ -103,12 +107,12 @@ public partial class AzureManager
             this.client = new MobileServiceClient("MOBILE_APP_URL");
         }
 
-        public MobileServiceClient getClient()
+        public MobileServiceClient AzureClient
         {
             get { return client; }
         }
 
-        public static AzureManager getInstance
+        public static AzureManager AzureManagerInstance
         {
             get
             {
@@ -124,7 +128,7 @@ public partial class AzureManager
 
 Now if we want to access our `MobileServiceClient` in an activity we can add the following line,
 ```C#
-    MobileServiceClient client = AzureManager.getInstance.getClient();
+    MobileServiceClient client = AzureManager.AzureManagerInstance.AzureClient;
 ``` 
 
 
@@ -134,7 +138,7 @@ These can be obtained by calling the `GetTable` on our `MobileServiceClient` obj
 
 Lets add our `timelineTable` field to our `AzureManager` activity 
 ```C#
-    IMobileServiceTable<Timeline> timelineTable;
+    private IMobileServiceTable<Timeline> timelineTable;
 ``` 
 
 And then the following line at the end of our `private AzureManager()` function
@@ -155,9 +159,22 @@ Lets create a `GetTimelines` method in our `AzureManager` activity
     }
 ``` 
 
-Now to can call our `GetTimelines` function, we can do the following in our `XXX` class
+Lets create a button in our `HomePage.xaml` file after our other button
+```xaml
+      <Button Text="See Timeline" TextColor="White" BackgroundColor="Red" Clicked="ViewTimeline_Clicked" />
+``` 
+
+Now to can call our `GetTimelines` function, we can add the following method in our `HomePage.xaml.cs` class
 ```C#
-    List<Timeline> timelines = AzureManager.getInstance.GetTimelines();
+    
+        private async void ViewTimeline_Clicked(Object sender)
+        {
+            List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
+            
+            ListView lb = new ListView();
+            lb.ItemsSource = timelines;
+
+        }
 ``` 
 
 [MORE INFO] A LINQ query we may want to achieve is if we want to filter the data to only return high happiness songs. We could do this by the following line, this grabs the timelines if it has a happiness of 0.5 or higher
@@ -173,15 +190,15 @@ To post a new timeline entry to our backend, we can invoke a `InsertAsync(timeli
 Lets create a `AddTimeline` method in our `AzureManager` activity 
 
 ```C#
-    public async Task<TimeLine> AddTimeline(Timeline timeline) {
-        return await this.timelineTable.InsertAsync(timeline);
+    public async Task AddTimeline(Timeline timeline) {
+        await this.timelineTable.InsertAsync(timeline);
     }
 ``` 
 
 NOTE: If a unique `Id` is not included in the `timeline` object when we insert it, the server generates one for us.
 
 
-Now to can call our `AddTimeline` function, we can do the following in our `XXX` class after `xx` line so that each response from cognitive services is uploaded
+Now to can call our `AddTimeline` function, we can do the following in our `HomePageXaml.cs` class at the end of the `TakePicture_Clicked` method so that each response from cognitive services is uploaded
 ```C#
     TBC
 ``` 
