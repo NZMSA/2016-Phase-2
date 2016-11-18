@@ -7,6 +7,37 @@
 ## 2. Calling Cognative Services
 
 * In MainPage.xaml.cs add ```using Microsoft.ProjectOxford.Emotion;``` to the top of your file.
+* Set up UI
+
+```
+<Label x:Name="errorLabel" />
+			<Grid>
+				<Grid.RowDefinitions>
+					<RowDefinition Height="50*" />
+					<RowDefinition Height="50*" />
+				</Grid.RowDefinitions>
+					<ListView x:Name="EmotionView" HasUnevenRows="True" Grid.Row="0" SeparatorVisibility="None">
+	    				<ListView.ItemTemplate>
+	            			<DataTemplate>
+	                			<ViewCell>
+	                    			<Grid>
+	                        			<Grid.RowDefinitions>
+	                           	 			<RowDefinition Height="Auto" />
+	                        			</Grid.RowDefinitions>
+	                        			<Grid.ColumnDefinitions>
+	                            			<ColumnDefinition Width="50*" />
+	                            			<ColumnDefinition Width="50*" />
+	                        			</Grid.ColumnDefinitions>
+	                        				<Label Grid.Column="0" Text="{Binding Key}"/>
+				                    	    <Label Grid.Column="1" Text="{Binding Value}"/>
+	                    			</Grid>
+	                			</ViewCell>
+	            			</DataTemplate>
+	        			</ListView.ItemTemplate>
+	  				</ListView>
+				<ActivityIndicator x:Name="UploadingIndicator" Color="Red" IsRunning="false" Grid.Row="0" />
+```
+
 * Next we'll pass the image the user took to get the current emotion.
 
 ```
