@@ -1,8 +1,8 @@
-# 3. 5. [WIP] Integrate Database to Solution 
+# 3. 8. Integrate Database to Solution 
 
-# NOTE THIS IS A WORK IN PROGRESS - UPDATED AFTER FRIDAY SESSION - COMPLETED CODE WILL BE UP SOON
+# NOTE UPDATED AFTER FRIDAY SESSION - COMPLETED CODE WILL BE UP SOON
 ## Introduction
-So now that we have a database attached to our server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
+So now that we have a database attached to our backend server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
 
 As our server is hosted as a web application we could just use a HTTP request. However there exists a managed client SDK package for Mobile Apps (`Microsoft.Azure.Mobile.Client`) that we can use to work with our server. 
 
@@ -10,7 +10,7 @@ As our server is hosted as a web application we could just use a HTTP request. H
 ### Bootcamp Content
 * [Video - Waiting](http://link.com)
 
-## 1. Postman requests
+## 1. Postman requests 
 Lets first see how our data looks like by making a GET request to `https://MOBILE_APP_URL.azurewebsites.net/tables/timeline` (replace `MOBILE_APP_URL` with your server name, for this demo its "hellotheretest").
 - /tables to access our easy tables
 - `/timeline` is the specific table we want to make requests to, so in the server `https://hellotheretest.azurewebsites.net/` there is an easytable called `timeline`
