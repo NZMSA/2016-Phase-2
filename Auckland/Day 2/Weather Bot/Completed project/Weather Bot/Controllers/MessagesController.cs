@@ -26,7 +26,7 @@ namespace Weather_Bot
 
                 WeatherObject.RootObject rootObject;
 
-                Console.WriteLine(activity.Attachments[0].ContentUrl);
+               // Console.WriteLine(activity.Attachments[0].ContentUrl);
 
                 HttpClient client = new HttpClient();
                 string x = await client.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/weather?q=" + activity.Text + "&units=metric&APPID=440e3d0ee33a977c5e2fff6bc12448ee"));
