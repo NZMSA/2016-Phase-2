@@ -1,6 +1,6 @@
 # 3. 5. [WIP] Integrate Database to Solution 
 
-# NOTE THIS IS A WORK IN PROGRESS
+# NOTE THIS IS A WORK IN PROGRESS - UPDATED AFTER FRIDAY SESSION - COMPLETED CODE WILL BE UP SOON
 ## Introduction
 So now that we have a database attached to our server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
 
@@ -8,22 +8,32 @@ As our server is hosted as a web application we could just use a HTTP request. H
 
 ## Resources
 ### Bootcamp Content
-* [Slide Deck](http://link.com)
+* [Video - Waiting](http://link.com)
 
 ## 1. Postman requests
-TBC photos
-Lets first see how our data looks like by making a GET request to https://MOBILE_APP_URL.azurewebsites.net (replace `MOBILE_APP_URL` with your server name, for this demo its "mywebsite").
-TBC
+Lets first see how our data looks like by making a GET request to `https://MOBILE_APP_URL.azurewebsites.net/tables/timeline` (replace `MOBILE_APP_URL` with your server name, for this demo its "hellotheretest").
+- /tables to access our easy tables
+- `/timeline` is the specific table we want to make requests to, so in the server `https://hellotheretest.azurewebsites.net/` there is an easytable called `timeline`
 
-Here we can see it matches well with what we designed for our server
-TBC
+NOTE: When we make requests to our backend thats hosted as a MOBILE_APP, we need to add the following header to our requests
+![Postman Headers](photos/postman_headers.png)
 
-Now with a POST request, the field namess of need to match with what we got from our GET Request (values dont!).
-(Note the body-content type is `JSON` because xx)
-TBC
+GET Request and response (If yours doesnt show any data ie just `[]` that means nothing is in your table! Dont worry, later when we take photos, if we make another request we will see data)
+![GET Request](photos/GET_request.png)
 
-Now we see that it has added the new entry to our database.
-TBC
+Here we can see it matches well with whats in our current backend database (with data)
+![GET Request](photos/data_in_table.png)
+
+Now with a POST request, we want to add new information to the backend database
+Because its easy tables, the schema is adjusted to what we send because it dynamically matches. So we can use any key and value pairings but to keep it consisent its normally better to keep to one schema rather than change it every 5 mins.
+We will send a JSON request with happiness, sadness and anger values
+(Note the body-content type is `raw` and of `JSON (application/json)` type)
+![POST Request](photos/POST_request.png)
+
+Now we see that it has added the new entry to our database. 
+![POST Request](photos/data_in_table_updated.png)
+
+NOTE: The other fields we didnt give values in our POST request (contempt, disgust ..) are defaulted to null values
 
 ## 2. Xamarin
 
@@ -32,6 +42,8 @@ At the earlier sections, we would have already added it to our Nuget Packages. I
 
 - For Visual Studio: Right-click your project, click Manage NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, then click Install.
 - For Xamarin Studio: Right-click your project, click Add > Add NuGet Packages, search for the `Microsoft.Azure.Mobile.Client` package, and then click Add Package.
+
+NOTE: Make sure to add it to all your solutions!
 
 If we want to use this SDK we add the following using statement
 ```C#
@@ -42,11 +54,13 @@ using Microsoft.WindowsAzure.MobileServices;
 Lets now create model class `Timeline` to represent the tables in our database. 
 So in `Moodify (Portable)`, create a folder named `DataModels` and then create a `Timeline.cs` file with,
 
+NOTE: If your table in your backend is not called timeline, rename it or rename this class and file to match.
+
 ```C#
 public class Timeline
 {
     [JsonProperty(PropertyName = "Id")]
-    public int ID { get; set; }
+    public string ID { get; set; }
 
     [JsonProperty(PropertyName = "anger")]
     public double Anger { get; set; }
@@ -152,7 +166,7 @@ We can then use this table to actually get data, get filtered data, get a timeli
 ### 2.5 Grabbing timeline data
 To retrieve information about the table, we can invoke a `ToListAsync()` method call, this is asynchronous and allows us to do LINQ querys.
 
-Lets create a `GetTimelines` method in our `AzureManager` activity 
+Lets create a `GetTimelines` method in our `AzureManager.cs` file
 ```C#
     public async Task<List<Timeline>> GetTimelines() {
         return await this.timelineTable.ToListAsync();
@@ -164,6 +178,34 @@ Lets create a button in our `HomePage.xaml` file after our other button
       <Button Text="See Timeline" TextColor="White" BackgroundColor="Red" Clicked="ViewTimeline_Clicked" />
 ``` 
 
+Before the closing tag of the stacklayout in our `HomePage.xaml` file (`</StackLayout>`), add the following list view
+```xaml
+    <ListView x:Name="TimelineList" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+          <DataTemplate>
+            <ViewCell>
+              <Grid>
+                <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="50*" />
+                  <ColumnDefinition Width="50*" />
+                  <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="1" Text="{Binding ID}"/>
+                <Label Grid.Column="0" Text="{Binding Happiness}"/>
+                <Label Grid.Column="2" Text="{Binding Anger}"/>
+              </Grid>
+            </ViewCell>
+          </DataTemplate>
+        </ListView.ItemTemplate>
+      </ListView>
+```
+Here we added a template for the timeline object values, showing the `ID`, `Happiness` and `Anger` values by using `Binding` ie `Text="{Binding Happiness}"`.
+This associates the value of the field of the timeline object and displays it.
+
+
 Now to can call our `GetTimelines` function, we can add the following method in our `HomePage.xaml.cs` class
 ```C#
     
@@ -171,11 +213,12 @@ Now to can call our `GetTimelines` function, we can add the following method in 
         {
             List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
             
-            ListView lb = new ListView();
-            lb.ItemsSource = timelines;
+            TimelineList.ItemsSource = timelines;
 
         }
 ``` 
+
+This will then set the source of the list view  `TimelineList` to the list of timelines we got from our backend
 
 [MORE INFO] A LINQ query we may want to achieve is if we want to filter the data to only return high happiness songs. We could do this by the following line, this grabs the timelines if it has a happiness of 0.5 or higher
 ```C#
@@ -187,7 +230,7 @@ Now to can call our `GetTimelines` function, we can add the following method in 
 ### 2.6 Posting timeline data
 To post a new timeline entry to our backend, we can invoke a `InsertAsync(timeline)` method call, where `timeline` is a Timeline object.
 
-Lets create a `AddTimeline` method in our `AzureManager` activity 
+Lets create a `AddTimeline` method in our `AzureManager.cs` file
 
 ```C#
     public async Task AddTimeline(Timeline timeline) {
@@ -199,9 +242,29 @@ NOTE: If a unique `Id` is not included in the `timeline` object when we insert i
 
 
 Now to can call our `AddTimeline` function, we can do the following in our `HomePageXaml.cs` class at the end of the `TakePicture_Clicked` method so that each response from cognitive services is uploaded
+
+Add this code after the  line `EmotionView.ItemsSource = result[0].Scores.ToRankedList();`
+
 ```C#
-    TBC
+    var temp = result[0].Scores;
+
+    Timeline emo = new Timeline()
+    {
+        Anger = temp.Anger,
+        Contempt = temp.Contempt,
+        Disgust = temp.Disgust,
+        Fear = temp.Fear,
+        Happiness = temp.Happiness,
+        Neutral = temp.Neutral,
+        Sadness = temp.Sadness,
+        Surprise = temp.Surprise,
+        Date = DateTime.Now
+    };
+
+    await AzureManager.AzureManagerInstance.AddTimeline(emo);
 ``` 
+
+This creates a `Timeline` object and sets up the values from the `result` (from cognitive services) and then adds it to backends database
 
 ### 2.6 [More Info] Updating and deleting timeline data
 To edit an existing timeline entry in our backend, we can invoke a `UpdateAsync(timeline)` method call, where `timeline` is a Timeline object. 
@@ -228,8 +291,8 @@ Lets create a `DeleteTimeline` method in our `AzureManager` activity
     }
 ``` 
 ## 3. Bot Framework
-:D TBC
+The above should work for the bot framework as well, if not `HTTP` request code will be provided
 
 ### Extra Learning Resources
 * [Using App Service with Xamarin by Microsoft](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-dotnet-how-to-use-client-library/)
-* [Using App Service with Xamarin by Xamarin](https://blog.xamarin.com/getting-started-azure-mobile-apps-easy-tables/)
+* [Using App Service with Xamarin by Xamarin - Outdated but good to understand](https://blog.xamarin.com/getting-started-azure-mobile-apps-easy-tables/)
