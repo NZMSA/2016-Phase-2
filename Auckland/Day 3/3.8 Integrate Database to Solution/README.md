@@ -26,6 +26,7 @@ Here we can see it matches well with whats in our current backend database (with
 
 Now with a POST request, we want to add new information to the backend database
 Because its easy tables, the schema is adjusted to what we send because it dynamically matches. So we can use any key and value pairings but to keep it consisent its normally better to keep to one schema rather than change it every 5 mins.
+
 We will send a JSON request with happiness, sadness and anger values
 (Note the body-content type is `raw` and of `JSON (application/json)` type)
 ![POST Request](photos/POST_request.png)
@@ -161,6 +162,7 @@ And then the following line at the end of our `private AzureManager()` function
 ```
 
 This grabs a reference to the data in our `Timeline` table in our backend and maps it to our client side model defined earlier.
+
 We can then use this table to actually get data, get filtered data, get a timeline by id, create new timeline, edit timeline and much more.
 
 ### 2.5 Grabbing timeline data
@@ -220,7 +222,8 @@ Now to can call our `GetTimelines` function, we can add the following method in 
 
 This will then set the source of the list view  `TimelineList` to the list of timelines we got from our backend
 
-[MORE INFO] A LINQ query we may want to achieve is if we want to filter the data to only return high happiness songs. We could do this by the following line, this grabs the timelines if it has a happiness of 0.5 or higher
+[MORE INFO] A LINQ query we may want to achieve is if we want to filter the data to only return high happiness songs. 
+We could do this by the following line, this grabs the timelines if it has a happiness of 0.5 or higher
 ```C#
     public async Task<List<Timeline>> GetHappyTimelines() {
         return await timelineTable.Where(timeline => timeline.Happiness > 0.5).ToListAsync();
@@ -268,7 +271,9 @@ This creates a `Timeline` object and sets up the values from the `result` (from 
 
 ### 2.6 [More Info] Updating and deleting timeline data
 To edit an existing timeline entry in our backend, we can invoke a `UpdateAsync(timeline)` method call, where `timeline` is a Timeline object. 
+
 The `Id` of the timeline object needs to match the one we want to edit as the backend uses the `id` field to identify which row to update. This applies to delete as well.
+
 Timeline entries that we retrieve by `ToListAsync()`, will have all the object's corresponding `Id` attached and the object returned by the result of `InsertAsync()` will also have its `Id` attached.
 
 Lets create a `UpdateTimeline` method in our `AzureManager` activity 
