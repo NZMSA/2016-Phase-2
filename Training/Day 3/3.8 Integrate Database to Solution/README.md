@@ -1,6 +1,5 @@
 # 3. 8. Integrate Database to Solution 
 
-# NOTE UPDATED AFTER FRIDAY SESSION - COMPLETED CODE WILL BE UP SOON
 ## Introduction
 So now that we have a database attached to our backend server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
 
@@ -195,7 +194,7 @@ Before the closing tag of the stacklayout in our `HomePage.xaml` file (`</StackL
                   <ColumnDefinition Width="50*" />
                   <ColumnDefinition Width="50*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Column="1" Text="{Binding ID}"/>
+                <Label Grid.Column="1" Text="{Binding Date}"/>
                 <Label Grid.Column="0" Text="{Binding Happiness}"/>
                 <Label Grid.Column="2" Text="{Binding Anger}"/>
               </Grid>
@@ -204,7 +203,7 @@ Before the closing tag of the stacklayout in our `HomePage.xaml` file (`</StackL
         </ListView.ItemTemplate>
       </ListView>
 ```
-Here we added a template for the timeline object values, showing the `ID`, `Happiness` and `Anger` values by using `Binding` ie `Text="{Binding Happiness}"`.
+Here we added a template for the timeline object values, showing the `Date`, `Happiness` and `Anger` values by using `Binding` ie `Text="{Binding Happiness}"`. This is a very simple way to display all our values and can be futher extended to display it in a aesthetic manner.
 This associates the value of the field of the timeline object and displays it.
 
 
