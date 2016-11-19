@@ -1,3 +1,19 @@
-# 2016-Phase-2
+# Welcome to MSA Phase 2016
+
+We've got an exciting November planned. We will be covering two very exciting, emerging technologies - Cross Platform development and Bots.
+
+## Xamarin
+
+Build & design a mobile app using Xamarin's cross-platform development software which simplifies mobile application creation.
+
+## Bots
+
+Microsoft Bot Framework is a comprehensive offering to build and deploy high quality bots for your users to enjoy in their favorite conversation experiences.
+
+## Assessment
 
 Please refer to the [Assessment and FAQ](/Assessment and FAQ/) section for any questions.
+
+## Questions
+
+Email nzedu@microsoft.com for any non-technical / admin queries, or post on the Facebook Group if you have any technical questions.
