@@ -10,6 +10,12 @@ Build & design a mobile app using Xamarin's cross-platform development software 
 
 Microsoft Bot Framework is a comprehensive offering to build and deploy high quality bots for your users to enjoy in their favorite conversation experiences.
 
+## Training Material
+
+You can find the training material in the Training folder, categorised by Day and Topic. 
+
+Lecture recordings were done and will be linked here once available from the University.
+
 ## Assessment
 
 Please refer to the [Assessment and FAQ](/Assessment and FAQ/) section for any questions.

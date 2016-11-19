@@ -1,10 +1,10 @@
-# Integrating Cognative Services 
+# Integrating Cognitive Services 
 
 ## 1. Installing the Nuget Package
 
 * Firstly search for and install ```Microsoft.ProjectOxford.Emotion``` in all your projects.
 
-## 2. Calling Cognative Services
+## 2. Calling Cognitive Services
 
 * In MainPage.xaml.cs add ```using Microsoft.ProjectOxford.Emotion;``` to the top of your file.
 * Set up UI
