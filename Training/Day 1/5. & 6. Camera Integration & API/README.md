@@ -1,5 +1,5 @@
 ## Building an app
-Due to issues that students have been facing building the base project, for this part we will begin by building a blank project. 
+If you've been having troubles building the base project try this example. Otherwise head over the our [day 3 training](https://github.com/NZMSA/2016-Phase-2/tree/master/Training/Day%203) on expanding the base project.
 
 Our objective by the end of this is to have an app that takes a picture, send this to cognitive services and display some text on screen saying whether you're happy or sad. 
 
@@ -235,7 +235,7 @@ namespace AndroidApp
 
 If you were to build your project right now, you would see some errors becuase some thing are still missing.
 
-##### Calling our Emotion API
+#### Calling our Emotion API
 Create a new project inside your solution and just name it `SharedProject` ( Templates > Visual C# > Shared Project template). Create a new class named `Core`
 
 This is the part where we will using the nuget package we installed earlier so reference the following as we will be using the Emotion API.
