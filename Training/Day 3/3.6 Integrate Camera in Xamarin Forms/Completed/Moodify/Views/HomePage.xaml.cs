@@ -1,6 +1,5 @@
 ﻿using Plugin.Media;
 using Plugin.Media.Abstractions;
-using Plugin.Permissions.Abstractions;
 using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
