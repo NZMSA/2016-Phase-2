@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Moodify.HomePage">
-  <ContentPage.Content>
-    <StackLayout BackgroundColor="White">
-      <Button Text="Take Picture" TextColor="White" BackgroundColor="Green" Clicked="TakePicture_Clicked" />
-      <Image x:Name="image" VerticalOptions="Start" />
-    </StackLayout>
-  </ContentPage.Content>
-</ContentPage>
