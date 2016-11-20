@@ -1,4 +1,4 @@
-# 3. 8. Integrate Database to Solution 
+# 3. 4. Integrate Database to Solution 
 
 ## Introduction
 So now that we have a database attached to our backend server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
