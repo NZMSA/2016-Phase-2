@@ -11,74 +11,60 @@
 
 ```
 <Label x:Name="errorLabel" />
-			<Grid>
-				<Grid.RowDefinitions>
-					<RowDefinition Height="50*" />
-					<RowDefinition Height="50*" />
-				</Grid.RowDefinitions>
-					<ListView x:Name="EmotionView" HasUnevenRows="True" Grid.Row="0" SeparatorVisibility="None">
-	    				<ListView.ItemTemplate>
-	            			<DataTemplate>
-	                			<ViewCell>
-	                    			<Grid>
-	                        			<Grid.RowDefinitions>
-	                           	 			<RowDefinition Height="Auto" />
-	                        			</Grid.RowDefinitions>
-	                        			<Grid.ColumnDefinitions>
-	                            			<ColumnDefinition Width="50*" />
-	                            			<ColumnDefinition Width="50*" />
-	                        			</Grid.ColumnDefinitions>
-	                        				<Label Grid.Column="0" Text="{Binding Key}"/>
-				                    	    <Label Grid.Column="1" Text="{Binding Value}"/>
-	                    			</Grid>
-	                			</ViewCell>
-	            			</DataTemplate>
-	        			</ListView.ItemTemplate>
-	  				</ListView>
-				<ActivityIndicator x:Name="UploadingIndicator" Color="Red" IsRunning="false" Grid.Row="0" />
+<Grid>
+	<Grid.RowDefinitions>
+		<RowDefinition Height="50*" />
+		<RowDefinition Height="50*" />
+	</Grid.RowDefinitions>
+	<ListView x:Name="EmotionView" HasUnevenRows="True" Grid.Row="0" SeparatorVisibility="None">
+		<ListView.ItemTemplate>
+			<DataTemplate>
+				<ViewCell>
+					<Grid>
+						<Grid.RowDefinitions>
+							<RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+							<ColumnDefinition Width="50*" />
+                            <ColumnDefinition Width="50*" />
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Text="{Binding Key}"/>
+			            <Label Grid.Column="1" Text="{Binding Value}"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+	</ListView>
+	<ActivityIndicator x:Name="UploadingIndicator" Color="Red" IsRunning="false" Grid.Row="0" />
+</Grid>
 ```
 
 * Next we'll pass the image the user took to get the current emotion.
 
 ```
 try
-            {
+{
+	string emotionKey = "YOUR-API-KEY";
+	
+	EmotionServiceClient emotionClient = new EmotionServiceClient(emotionKey);
 
-                string emotionKey = "88f748eefd944a5d8d337a1765414bba";
+	var emotionResults = await emotionClient.RecognizeAsync(file.GetStream());
 
-                EmotionServiceClient emotionClient = new EmotionServiceClient(emotionKey);
+	UploadingIndicator.IsRunning = false;
 
-                var emotionResults = await emotionClient.RecognizeAsync(file.GetStream());
+	var temp = emotionResults[0].Scores;
 
-                UploadingIndicator.IsRunning = false;
+	EmotionView.ItemsSource = temp.ToRankedList();
 
-                var temp = emotionResults[0].Scores;
-                Timeline emo = new Timeline()
-                {
-                    Anger = temp.Anger,
-                    Contempt = temp.Contempt,
-                    Disgust = temp.Disgust,
-                    Fear = temp.Fear,
-                    Happiness = temp.Happiness,
-                    Neutral = temp.Neutral,
-                    Sadness = temp.Sadness,
-                    Surprise = temp.Surprise,
-                    createdAt = DateTime.Now
-                };
-
-                EmotionView.ItemsSource = temp.ToRankedList();
-
-                App.Database.SaveItem(emo);
-
-                image.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    file.Dispose();
-                    return stream;
-                });
-            }
-            catch (Exception ex)
-            {
-                errorLabel.Text = ex.Message;
-            }			
+	image.Source = ImageSource.FromStream(() =>
+    {
+		var stream = file.GetStream();
+		file.Dispose();
+		return stream;
+	});
+}
+catch (Exception ex)
+{
+	errorLabel.Text = ex.Message;
+}			
 ```
