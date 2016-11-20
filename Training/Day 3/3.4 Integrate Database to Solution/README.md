@@ -1,9 +1,14 @@
-# 3. 4. Integrate Database to Solution 
+# 3.4. Integrate Database to Solution 
 
 ## Introduction
-So now that we have a database attached to our backend server (web app), we now want our client application (xamarin application) to do GET and POST requests to the database.
+So now that we have a database attached to our backend server (mobile app), we now want our client application (xamarin application) to do GET and POST requests to the database.
 
-As our server is hosted as a web application we could just use a HTTP request. However there exists a managed client SDK package for Mobile Apps (`Microsoft.Azure.Mobile.Client`) that we can use to work with our server. 
+As our server is hosted as a mobile app we could just use a HTTP request. However there exists a managed client SDK package for Mobile Apps (`Microsoft.Azure.Mobile.Client`) that we can use to work with our server. 
+
+This similar interaction with mobile app can be done with native applications such as Android and iOS.
+Here in this tutorial we can see that interacting with the backend is the same for Xamarian and Bot Framework as they are both in C#.
+
+For full understanding of working with the backend please refer to the `2. Xamarin` as `3. Bot Framework` just references it.
 
 ## Resources
 ### Bootcamp Content
@@ -221,6 +226,8 @@ Now to can call our `GetTimelines` function, we can add the following method in 
 
 This will then set the source of the list view  `TimelineList` to the list of timelines we got from our backend
 
+[More Info on ListView](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/) about customising the appearance of your list view
+
 [MORE INFO] A LINQ query we may want to achieve is if we want to filter the data to only return high happiness songs. 
 We could do this by the following line, this grabs the timelines if it has a happiness of 0.5 or higher
 ```C#
@@ -295,8 +302,50 @@ Lets create a `DeleteTimeline` method in our `AzureManager` activity
     }
 ``` 
 ## 3. Bot Framework
-The above should work for the bot framework as well, if not `HTTP` request code will be provided
+Like what we did in Xamarin, the same SDK `Microsoft.Azure.Mobile.Client` can be used to interact with our backend.
+
+For now we will just see if we can grab the same data as our Xamarian application and display it to the user.
+
+Follow steps `2.1 Referencing Azure Mobile Services` to `2.4 Creating a table references`, such that your `AzureManager.cs` file is in the main root folder.
+
+
+### 3.1 Grabbing timeline data
+Lets create a `GetTimelines` method in our `AzureManager.cs` file
+```C#
+    public async Task<List<Timeline>> GetTimelines() {
+        return await this.timelineTable.ToListAsync();
+    }
+``` 
+
+And then in our `MessagesController.cs` add the following command code (so whenever this phrase is entered do this) after `xxx`
+
+```C#
+    else if (userMessage.ToLower().Equals("data"))
+    {
+        List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
+        endOutput = "";
+        foreach(Timeline t in timelines)
+        {
+            endOutput += "[" + t.Date + "] Happiness " + t.Happiness + ", Sadness " + t.Sadness + Environment.NewLine;
+        }
+        isWeatherRequest = false;
+
+    }
+```
+
+So that if we type a message of `data` to the bot, it would retrieve all the timelines and display the `Date` and its associated `Happiness` and `Sadness`.
+
+### 3.2 Posting/Updating/Deleting timeline data
+All of this is very much like how it was done the Xamarin tutorial.
+
+ie adding a new entry to the backend database is,
+```C#
+    public async Task AddTimeline(Timeline timeline) {
+        await this.timelineTable.InsertAsync(timeline);
+    }
+``` 
 
 ### Extra Learning Resources
 * [Using App Service with Xamarin by Microsoft](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-dotnet-how-to-use-client-library/)
 * [Using App Service with Xamarin by Xamarin - Outdated but good to understand](https://blog.xamarin.com/getting-started-azure-mobile-apps-easy-tables/)
+* [ListView in Xamarian](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/)
