@@ -2,7 +2,8 @@
 
 ## 1. Installing the Nuget Package
 
-* Firstly search for and install ```Microsoft.ProjectOxford.Emotion``` in all your projects.
+* Firstly your Android and iOS projects should install the latest version of 'Microsoft.Bcl.Build'. Simply search for ```Microsoft.Bcl.Build``` and click 'install'.
+* Next, search for and install ```Microsoft.ProjectOxford.Emotion``` to all your projects.
 
 ## 2. Calling Cognitive Services
 
