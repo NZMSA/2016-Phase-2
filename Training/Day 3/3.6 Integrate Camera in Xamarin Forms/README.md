@@ -81,34 +81,34 @@ if (cameraStatus != PermissionStatus.Granted || storageStatus != PermissionStatu
 * To take a photo add the following lines of code
 
 ```
- if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
-            {
-                var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
-                {
-                    DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
-                    Directory = "Moodify",
-                    Name = $"{DateTime.UtcNow}.jpg",
-                    CompressionQuality = 92
-                });
+if (cameraStatus == PermissionStatus.Granted && storageStatus == PermissionStatus.Granted)
+{
+	var file = await CrossMedia.Current.TakePhotoAsync(new Plugin.Media.Abstractions.StoreCameraMediaOptions
+	{
+		DefaultCamera = Plugin.Media.Abstractions.CameraDevice.Front,
+		Directory = "Moodify",
+		Name = $"{DateTime.UtcNow}.jpg",
+		CompressionQuality = 92
+	});
 
-                if (file == null)
-                    return;
-            }
-            else
-            {
-                await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
-                //On iOS you may want to send your user to the settings screen.
-                //CrossPermissions.Current.OpenAppSettings();
-            }
+	if (file == null)
+		return;
+}
+else
+{
+	await DisplayAlert("Permissions Denied", "Unable to take photos.", "OK");
+	//On iOS you may want to send your user to the settings screen.
+	//CrossPermissions.Current.OpenAppSettings();
+}
 ```
 
 * To diplay the image add the following lines of code.
 
 ```
 image.Source = ImageSource.FromStream(() =>
-                {
-                    var stream = file.GetStream();
-                    file.Dispose();
-                    return stream;
-                });
+{
+	var stream = file.GetStream();
+	file.Dispose();
+	return stream;
+});
 ```
