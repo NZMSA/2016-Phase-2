@@ -155,7 +155,7 @@ Now add the following code after `string wind = rootObject.wind.deg + "°";`
         Title = "More Info"
     };
     cardButtons.Add(plButton);
-    
+
     ThumbnailCard plCard = new ThumbnailCard()
     {
         Title = cityName + " Weather",
@@ -180,3 +180,4 @@ So now when we request for weather we are given it in a visual manner with the w
 
 ### Extra Learning Resources
 * [Bot Cards](https://docs.botframework.com/en-us/csharp/builder/sdkreference/attachments.html)
+* [Weather API](https://openweathermap.org/current)
