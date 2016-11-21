@@ -345,12 +345,24 @@ So that if we type a message of `data` to the bot, it would retrieve all the tim
 ### 3.2 Posting/Updating/Deleting timeline data
 All of this is very much like how it was done the Xamarin tutorial.
 
-ie adding a new entry to the backend database is,
+ie Adding a new fake timeline entry to the backend database would be, 
 ```C#
-    public async Task AddTimeline(Timeline timeline) {
-        await this.timelineTable.InsertAsync(timeline);
-    }
+    Timeline timeline = new Timeline()
+    {
+        Anger = 0.1,
+        Contempt = 0.2,
+        Disgust = 0.3,
+        Fear = 0.3,
+        Happiness = 0.3,
+        Neutral = 0.2,
+        Sadness = 0.4,
+        Surprise = 0.4,
+        Date = DateTime.Now
+    };
+
+    await AzureManager.AzureManagerInstance.AddTimeline(timeline);
 ``` 
+
 
 ### Extra Learning Resources
 * [Using App Service with Xamarin by Microsoft](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-dotnet-how-to-use-client-library/)
