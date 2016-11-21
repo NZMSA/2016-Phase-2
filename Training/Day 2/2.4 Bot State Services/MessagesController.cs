@@ -27,6 +27,8 @@ namespace Weather_Bot
                 StateClient stateClient = activity.GetStateClient();
                 BotData userData = await stateClient.BotState.GetUserDataAsync(activity.ChannelId, activity.From.Id);
 
+                var userMessage = activity.Text;
+                
                 string endOutput = "Hello";
 
                 // calculate something for us to return

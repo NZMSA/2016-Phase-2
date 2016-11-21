@@ -25,13 +25,10 @@ namespace Weather_Bot
             {
                 ConnectorClient connector = new ConnectorClient(new Uri(activity.ServiceUrl));
 
-                var userMessage = activity.Text;
-
-
                 StateClient stateClient = activity.GetStateClient();
                 BotData userData = await stateClient.BotState.GetUserDataAsync(activity.ChannelId, activity.From.Id);
 
-                bool isWeatherRequest = true;
+                var userMessage = activity.Text;
 
                 string endOutput = "Hello";
 
@@ -46,13 +43,14 @@ namespace Weather_Bot
                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                 }
 
+                bool isWeatherRequest = true;
+
                 if (userMessage.ToLower().Contains("clear"))
                 {
                     endOutput = "User data cleared";
                     await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
                     isWeatherRequest = false;
                 } 
-
 
                 if (userMessage.Length > 9)
                 {
@@ -110,7 +108,7 @@ namespace Weather_Bot
                     return Request.CreateResponse(HttpStatusCode.OK);
 
                 }
-                
+
                 if (!isWeatherRequest)
                 {
                     // return our reply to the user
@@ -134,17 +132,20 @@ namespace Weather_Bot
                     string pressure = rootObject.main.pressure + "hPa";
                     string humidity = rootObject.main.humidity + "%";
                     string wind = rootObject.wind.deg + "°";
+
                     // added fields
                     string icon = rootObject.weather[0].icon;
                     int cityId = rootObject.id;
 
                     // return our reply to the user
-                    Activity replyToConversation = activity.CreateReply($"Current weather for {cityName}");
-                    replyToConversation.Recipient = activity.From;
-                    replyToConversation.Type = "message";
-                    replyToConversation.Attachments = new List<Attachment>();
+                    Activity weatherReply = activity.CreateReply($"Current weather for {cityName}");
+                    weatherReply.Recipient = activity.From;
+                    weatherReply.Type = "message";
+                    weatherReply.Attachments = new List<Attachment>();
+
                     List<CardImage> cardImages = new List<CardImage>();
                     cardImages.Add(new CardImage(url: "http://openweathermap.org/img/w/" + icon + ".png"));
+
                     List<CardAction> cardButtons = new List<CardAction>();
                     CardAction plButton = new CardAction()
                     {
@@ -153,6 +154,7 @@ namespace Weather_Bot
                         Title = "More Info"
                     };
                     cardButtons.Add(plButton);
+                    
                     ThumbnailCard plCard = new ThumbnailCard()
                     {
                         Title = cityName + " Weather",
@@ -160,9 +162,10 @@ namespace Weather_Bot
                         Images = cardImages,
                         Buttons = cardButtons
                     };
+
                     Attachment plAttachment = plCard.ToAttachment();
-                    replyToConversation.Attachments.Add(plAttachment);
-                    await connector.Conversations.SendToConversationAsync(replyToConversation);
+                    weatherReply.Attachments.Add(plAttachment);
+                    await connector.Conversations.SendToConversationAsync(weatherReply);
 
                 }
             }

@@ -10,6 +10,8 @@ Thus the Bot Framework has a service for storing bot state. This is powerful in 
 
 For this tutorial we are going to work on the base `Weather Bot` project
 
+The completed code of the tutorial for `MessagesController.cs` has been provided in the folder as this is the only file that has changed.
+
 ## Resources
 ### Bootcamp Content
 * [Video - Waiting](http://link.com)
@@ -35,6 +37,8 @@ Now lets test setting data and retrieving data of the calling user.
 
 After the code from above, add the following code,
 ```C#
+    var userMessage = activity.Text;
+
     string endOutput = "Hello";
 
     // calculate something for us to return
