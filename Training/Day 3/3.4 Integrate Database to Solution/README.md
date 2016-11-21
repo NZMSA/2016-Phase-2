@@ -6,9 +6,11 @@ So now that we have a database attached to our backend server (mobile app), we n
 As our server is hosted as a mobile app we could just use a HTTP request. However there exists a managed client SDK package for Mobile Apps (`Microsoft.Azure.Mobile.Client`) that we can use to work with our server. 
 
 This similar interaction with mobile app can be done with native applications such as Android and iOS.
-Here in this tutorial we can see that interacting with the backend is the same for Xamarian and Bot Framework as they are both in C#.
+Here in this tutorial we can see that interacting with the backend is the same for Xamarin and Bot Framework as they are both in C#.
 
 For full understanding of working with the backend please refer to the `2. Xamarin` as `3. Bot Framework` just references it.
+
+The completed project of both the Xamarin and Bot are included in this folder.
 
 ### Important
 For this tutorial make sure you have an easy table in your mobile backend called `timeline`, as we reference it by name 
@@ -309,7 +311,7 @@ Lets create a `DeleteTimeline` method in our `AzureManager` activity
 ## 3. Bot Framework
 Like what we did in Xamarin, the same SDK `Microsoft.Azure.Mobile.Client` can be used to interact with our backend.
 
-For now we will just see if we can grab the same data as our Xamarian application and display it to the user.
+For now we will just see if we can grab the same data as our Xamarin application and display it to the user.
 
 Follow steps `2.1 Referencing Azure Mobile Services` to `2.4 Creating a table references`, such that your `AzureManager.cs` file is in the main root folder.
 
@@ -322,16 +324,16 @@ Lets create a `GetTimelines` method in our `AzureManager.cs` file
     }
 ``` 
 
-And then in our `MessagesController.cs` add the following command code (so whenever this phrase is entered do this) after `xxx`
+And then in our `MessagesController.cs` add the following command code (so whenever this phrase is entered do this) before `if (!isWeatherRequest)`
 
 ```C#
-    else if (userMessage.ToLower().Equals("data"))
+    if (userMessage.ToLower().Equals("data"))
     {
         List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
         endOutput = "";
         foreach(Timeline t in timelines)
         {
-            endOutput += "[" + t.Date + "] Happiness " + t.Happiness + ", Sadness " + t.Sadness + Environment.NewLine;
+            endOutput += "[" + t.Date + "] Happiness " + t.Happiness + ", Sadness " + t.Sadness +  "\n\n";
         }
         isWeatherRequest = false;
 
@@ -353,4 +355,4 @@ ie adding a new entry to the backend database is,
 ### Extra Learning Resources
 * [Using App Service with Xamarin by Microsoft](https://azure.microsoft.com/en-us/documentation/articles/app-service-mobile-dotnet-how-to-use-client-library/)
 * [Using App Service with Xamarin by Xamarin - Outdated but good to understand](https://blog.xamarin.com/getting-started-azure-mobile-apps-easy-tables/)
-* [ListView in Xamarian](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/)
+* [ListView in Xamarin](https://developer.xamarin.com/guides/xamarin-forms/user-interface/listview/)

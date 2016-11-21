@@ -73,6 +73,9 @@ So we wont really be seeing our `Hello` and `Hello again` messages anymore, but 
 ## 2. MSA Card
 Lets create a generic card to display MSA in order to understand cards, this will be called when the user writes `msa`
 
+It would look like this,
+![MSA Card](photos/msa_card.png)
+
 Add the following code before `if (!isWeatherRequest)`
 ``` C#
 if (userMessage.ToLower().Equals("msa"))
@@ -126,6 +129,9 @@ List of action types can be seen below,
 
 ## 3. Weather Card
 Now lets change the weather response from text to something visual like a card!
+
+It would look like this,
+![Weather Card](photos/weather_card.png)
 
 First lets delete the old text response, delete the following lines of code
 ``` C#

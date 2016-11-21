@@ -1,0 +1,39 @@
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Bot Application1.dll.config
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Bot Application1.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Bot Application1.pdb
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Autofac.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Chronic.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Bot.Builder.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Bot.Connector.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.IdentityModel.Protocol.Extensions.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Rest.ClientRuntime.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.WindowsAzure.Configuration.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Newtonsoft.Json.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Net.Http.Formatting.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Web.Http.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Web.Http.WebHost.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Autofac.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Bot.Builder.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Bot.Connector.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.IdentityModel.Protocol.Extensions.pdb
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.IdentityModel.Protocol.Extensions.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.Rest.ClientRuntime.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Microsoft.WindowsAzure.Configuration.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\Newtonsoft.Json.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.IdentityModel.Tokens.Jwt.pdb
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.IdentityModel.Tokens.Jwt.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Net.Http.Formatting.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Web.Http.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\System.Web.Http.WebHost.xml
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\ar\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\en\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\es\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\fa\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\fr\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\ja\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\ru\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\bin\zh-hans\Microsoft.Bot.Builder.resources.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\obj\Release\Bot Application1.dll
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\obj\Release\Bot Application1.pdb
+C:\Users\Obvio\Projects\2016-Phase-2\Auckland\Day 2\Weather Bot\Completed project\Weather Bot\obj\Release\Weather Bot.csprojResolveAssemblyReference.cache
