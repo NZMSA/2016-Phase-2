@@ -1,4 +1,4 @@
-# 2.5 Bot Cards
+# 2.4 Bot Cards
 
 ## Introduction
 To provide more visual responses back to the user, we can use cards. 
@@ -20,6 +20,8 @@ replyMessage.Attachments.Add(new Attachment()
     Name = "Bender_Rodriguez.png"      
 });
 ```
+
+For this tutorial we carry on from `2.3 Bot State Services` 
 
 The completed code of the tutorial for `MessagesController.cs` has been provided in the folder as this is the only file that has changed.
 

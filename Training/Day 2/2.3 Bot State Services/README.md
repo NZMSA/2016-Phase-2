@@ -1,4 +1,4 @@
-# 2.4 State Services
+# 2.3 State Services
 
 ## Introduction
 
@@ -8,7 +8,7 @@
 
 Thus the Bot Framework has a service for storing bot state. This is powerful in any bot application, so we can personalize the experience or allows tracking of things like number of times they said a particular word.
 
-For this tutorial we are going to work on the base `Weather Bot` project
+For this tutorial we are going to work on the base `Weather Bot` project in `2.2 Bot Samples`
 
 The completed code of the tutorial for `MessagesController.cs` has been provided in the folder as this is the only file that has changed.
 
