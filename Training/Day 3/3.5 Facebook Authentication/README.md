@@ -5,11 +5,11 @@
 * Navigate to `https://developers.facebook.com/`.
 * Click 'My Apps' in the top right corner of your screen.
 
-![Facebook Developer](photos/fb_dev.png)
+![Facebook Developer](photos/fb_dev.PNG)
 
 * From the dropdown list select 'Add a New App'.
 
-![Create App](photos/create_app.png)
+![Create App](photos/create_app.PNG)
 
 * Give your app a display name.
 * Enter your contact email address.
@@ -18,7 +18,7 @@
 * Once created, you should be taken to the 'Product Setup' page. You should see a section called 'Facebook login'.
 * Click 'Get Started'.
 
-![Login](photos/login.png)
+![Login](photos/login.PNG)
 
 * Under 'Valid OAuth redirect URIs', add the URL to your Azure Mobile App.
 * Make sure your URL follows with ```/.auth/login/facebook/callback```. So for example, your redirect URI would be ```https://YOUR-WEBSITE.azurewebsites.net/.auth/login/facebook/callback```
