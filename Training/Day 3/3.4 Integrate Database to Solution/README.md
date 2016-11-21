@@ -10,6 +10,11 @@ Here in this tutorial we can see that interacting with the backend is the same f
 
 For full understanding of working with the backend please refer to the `2. Xamarin` as `3. Bot Framework` just references it.
 
+### Important
+For this tutorial make sure you have an easy table in your mobile backend called `timeline`, as we reference it by name 
+
+![Easy tables](photos/easy_tables.png)
+
 ## Resources
 ### Bootcamp Content
 * [Video - Waiting](http://link.com)
