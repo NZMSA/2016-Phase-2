@@ -110,7 +110,7 @@ namespace Weather_Bot
 
                 }
 
-                if (userMessage.ToLower().Equals("timeline"))
+                if (userMessage.ToLower().Equals("get timelines"))
                 {
                     List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
                     endOutput = "";
@@ -120,6 +120,28 @@ namespace Weather_Bot
                     }
                     isWeatherRequest = false;
 
+                }
+
+                if (userMessage.ToLower().Equals("new timeline"))
+                {
+                    Timeline timeline = new Timeline()
+                    {
+                        Anger = 0.1,
+                        Contempt = 0.2,
+                        Disgust = 0.3,
+                        Fear = 0.3,
+                        Happiness = 0.3,
+                        Neutral = 0.2,
+                        Sadness = 0.4,
+                        Surprise = 0.4,
+                        Date = DateTime.Now
+                    };
+
+                    await AzureManager.AzureManagerInstance.AddTimeline(timeline);
+
+                    isWeatherRequest = false;
+
+                    endOutput = "New timeline added [" + timeline.Date + "]";
                 }
 
                 if (!isWeatherRequest)

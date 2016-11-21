@@ -327,7 +327,7 @@ Lets create a `GetTimelines` method in our `AzureManager.cs` file
 And then in our `MessagesController.cs` add the following command code (so whenever this phrase is entered do this) before `if (!isWeatherRequest)`
 
 ```C#
-    if (userMessage.ToLower().Equals("data"))
+    if (userMessage.ToLower().Equals("get timelines"))
     {
         List<Timeline> timelines = await AzureManager.AzureManagerInstance.GetTimelines();
         endOutput = "";
@@ -340,27 +340,43 @@ And then in our `MessagesController.cs` add the following command code (so whene
     }
 ```
 
-So that if we type a message of `data` to the bot, it would retrieve all the timelines and display the `Date` and its associated `Happiness` and `Sadness`.
+So that if we type a message of `get timelines` to the bot, it would retrieve all the timelines and display the `Date` and its associated `Happiness` and `Sadness`.
 
 ### 3.2 Posting/Updating/Deleting timeline data
 All of this is very much like how it was done the Xamarin tutorial.
 
-ie Adding a new fake timeline entry to the backend database would be, 
-```C#
-    Timeline timeline = new Timeline()
-    {
-        Anger = 0.1,
-        Contempt = 0.2,
-        Disgust = 0.3,
-        Fear = 0.3,
-        Happiness = 0.3,
-        Neutral = 0.2,
-        Sadness = 0.4,
-        Surprise = 0.4,
-        Date = DateTime.Now
-    };
+ie Adding a new timeline entry to the backend database would be adding this to  in our `AzureManager.cs` file
 
-    await AzureManager.AzureManagerInstance.AddTimeline(timeline);
+```C#
+    public async Task AddTimeline(Timeline timeline) {
+        await this.timelineTable.InsertAsync(timeline);
+    }
+``` 
+
+And adding this in our `MessagesController.cs` before `if (!isWeatherRequest)`
+This will then add a new entry of timeline to the table with these values whenever the user types `new timeline`
+```C#
+    if (userMessage.ToLower().Equals("new timeline"))
+    {
+        Timeline timeline = new Timeline()
+        {
+            Anger = 0.1,
+            Contempt = 0.2,
+            Disgust = 0.3,
+            Fear = 0.3,
+            Happiness = 0.3,
+            Neutral = 0.2,
+            Sadness = 0.4,
+            Surprise = 0.4,
+            Date = DateTime.Now
+        };
+
+        await AzureManager.AzureManagerInstance.AddTimeline(timeline);
+
+        isWeatherRequest = false;
+
+        endOutput = "New timeline added [" + timeline.Date + "]";
+    }
 ``` 
 
 
