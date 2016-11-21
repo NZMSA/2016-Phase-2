@@ -46,6 +46,12 @@ namespace Weather_Bot
                     await stateClient.BotState.SetUserDataAsync(activity.ChannelId, activity.From.Id, userData);
                 }
 
+                if (userMessage.ToLower().Contains("clear"))
+                {
+                    endOutput = "User data cleared";
+                    await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
+                    isWeatherRequest = false;
+                } 
 
 
                 if (userMessage.Length > 9)
@@ -60,13 +66,7 @@ namespace Weather_Bot
                     }
                 }
 
-                if (userMessage.ToLower().Contains("clear"))
-                {
-                    endOutput = "User data cleared";
-                    await stateClient.BotState.DeleteStateForUserAsync(activity.ChannelId, activity.From.Id);
-                    isWeatherRequest = false;
-                }
-                else if (userMessage.ToLower().Equals("home"))
+                if (userMessage.ToLower().Equals("home"))
                 {
                     string homecity = userData.GetProperty<string>("HomeCity");
                     if (homecity == null)
@@ -110,6 +110,7 @@ namespace Weather_Bot
                     return Request.CreateResponse(HttpStatusCode.OK);
 
                 }
+                
                 if (!isWeatherRequest)
                 {
                     // return our reply to the user
@@ -122,8 +123,6 @@ namespace Weather_Bot
                 {
 
                     WeatherObject.RootObject rootObject;
-
-                    //    Console.WriteLine(activity.Attachments[0].ContentUrl);
 
                     HttpClient client = new HttpClient();
                     string x = await client.GetStringAsync(new Uri("http://api.openweathermap.org/data/2.5/weather?q=" + activity.Text + "&units=metric&APPID=440e3d0ee33a977c5e2fff6bc12448ee"));
