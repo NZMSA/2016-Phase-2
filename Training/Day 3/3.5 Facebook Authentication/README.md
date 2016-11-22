@@ -243,3 +243,52 @@ using System.Threading.Tasks;
 This code ensures the authenticator is initialized before the app is loaded.
 
 * Rebuild the app, run it, then sign in with the authentication provider you chose and verify you are able to access data as an authenticated user.
+
+## 6. Caching token
+
+* Right click on your solution and select 'Manage NuGet Packages...'
+* Search for ```Xam.Plugins.Settings``` and install it to all your projects.
+* Inside ```HomePage.xaml.cs```, replace ```loginButton_Clicked``` method with the following block of code:
+
+```
+async void loginButton_Clicked(object sender, EventArgs e)
+{
+	if (App.Authenticator != null)
+		authenticated = await App.Authenticator.Authenticate();
+
+	if (authenticated == true)
+    {
+		this.loginButton.IsVisible = false;
+        CrossSettings.Current.AddOrUpdateValue("user", AzureManager.DefaultManager.CurrentClient.CurrentUser.UserId);
+        CrossSettings.Current.AddOrUpdateValue("token", AzureManager.DefaultManager.CurrentClient.CurrentUser.MobileServiceAuthenticationToken);
+    }
+}
+```
+
+What this does is after the user clicks the login button, after the user enters their username and password we're then grabbing their user ID and token and saving them locally.
+
+* Next, each time the user launches the app we want to apply the save token we grabbed when they first logged in and apply it to the azure client, saving the user from re-entering their Facebook credentials.
+* Replace the ```OnAppearing``` method with the following statent:
+
+```
+protected override async void OnAppearing()
+{
+	base.OnAppearing();
+
+	string userId = CrossSettings.Current.GetValueOrDefault("user", "");
+    string token = CrossSettings.Current.GetValueOrDefault("token", "");
+
+	if (!token.Equals("") && !userId.Equals(""))
+    {
+		MobileServiceUser user = new MobileServiceUser(userId);
+		user.MobileServiceAuthenticationToken = token;
+
+        AzureManager.DefaultManager.CurrentClient.CurrentUser = user;
+
+        authenticated = true;
+    }
+
+     if (authenticated == true)
+		this.loginButton.IsVisible = false;
+}
+```
