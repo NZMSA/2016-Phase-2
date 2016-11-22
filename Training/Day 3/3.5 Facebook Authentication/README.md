@@ -144,7 +144,7 @@ This button triggers server-managed authentication with your mobile app backend.
      try
      {
          // Sign in with Facebook login using a server-managed flow.
-         user = await TodoItemManager.DefaultManager.CurrentClient.LoginAsync(this,
+         user = await AzureManager.DefaultManager.CurrentClient.LoginAsync(this,
              MobileServiceAuthenticationProvider.Facebook);
          if (user != null)
          {
@@ -211,7 +211,7 @@ using System.Threading.Tasks;
          // Sign in with Facebook login using a server-managed flow.
          if (user == null)
          {
-             user = await TodoItemManager.DefaultManager.CurrentClient
+             user = await AzureManager.DefaultManager.CurrentClient
                  .LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,
                  MobileServiceAuthenticationProvider.Facebook);
              if (user != null)
