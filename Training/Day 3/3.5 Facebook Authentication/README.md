@@ -123,12 +123,13 @@ This button triggers server-managed authentication with your mobile app backend.
  ```
  using Microsoft.WindowsAzure.MobileServices;
  using System.Threading.Tasks;
+ using static Moodify.App; //Only use Moodify if that's the name of your project.
  ```
 
  * Update the MainActivity class to implement the IAuthenticate interface, as follows:
 
  ```
- public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsApplicationActivity, IAuthenticate
+ public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity, IAuthenticate
  ```
 
  * Update the MainActivity class by adding a MobileServiceUser field and an Authenticate method, which is required by the IAuthenticate interface, as follows:
@@ -144,7 +145,7 @@ This button triggers server-managed authentication with your mobile app backend.
      try
      {
          // Sign in with Facebook login using a server-managed flow.
-         user = await AzureManager.DefaultManager.CurrentClient.LoginAsync(this,
+         user = await AzureManager.AzureManagerInstance.AzureClient.LoginAsync(this,
              MobileServiceAuthenticationProvider.Facebook);
          if (user != null)
          {
@@ -188,6 +189,7 @@ This button triggers server-managed authentication with your mobile app backend.
 ```
 using Microsoft.WindowsAzure.MobileServices;
 using System.Threading.Tasks;
+using static Moodify.App;
  ```
 
  * Update the AppDelegate class to implement the IAuthenticate interface, as follows:
@@ -211,8 +213,7 @@ using System.Threading.Tasks;
          // Sign in with Facebook login using a server-managed flow.
          if (user == null)
          {
-             user = await AzureManager.DefaultManager.CurrentClient
-                 .LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,
+             user = await AzureManager.AzureManagerInstance.AzureClient.LoginAsync(UIApplication.SharedApplication.KeyWindow.RootViewController,
                  MobileServiceAuthenticationProvider.Facebook);
              if (user != null)
              {
@@ -248,7 +249,14 @@ This code ensures the authenticator is initialized before the app is loaded.
 
 * Right click on your solution and select 'Manage NuGet Packages...'
 * Search for ```Xam.Plugins.Settings``` and install it to all your projects.
-* Inside ```HomePage.xaml.cs```, replace ```loginButton_Clicked``` method with the following block of code:
+* Inside ```HomePage.xaml.cs```, add:
+
+```
+using Plugin.Settings;
+using Microsoft.WindowsAzure.MobileServices;
+```
+
+* Next replace ```loginButton_Clicked``` method with the following block of code:
 
 ```
 async void loginButton_Clicked(object sender, EventArgs e)
@@ -259,8 +267,8 @@ async void loginButton_Clicked(object sender, EventArgs e)
 	if (authenticated == true)
     {
 		this.loginButton.IsVisible = false;
-        CrossSettings.Current.AddOrUpdateValue("user", AzureManager.DefaultManager.CurrentClient.CurrentUser.UserId);
-        CrossSettings.Current.AddOrUpdateValue("token", AzureManager.DefaultManager.CurrentClient.CurrentUser.MobileServiceAuthenticationToken);
+        CrossSettings.Current.AddOrUpdateValue("user", AzureManager.AzureManagerInstance.AzureClient.CurrentUser.UserId);
+        CrossSettings.Current.AddOrUpdateValue("token", AzureManager.AzureManagerInstance.AzureClient.CurrentUser.MobileServiceAuthenticationToken);
     }
 }
 ```
@@ -283,7 +291,7 @@ protected override async void OnAppearing()
 		MobileServiceUser user = new MobileServiceUser(userId);
 		user.MobileServiceAuthenticationToken = token;
 
-        AzureManager.DefaultManager.CurrentClient.CurrentUser = user;
+		AzureManager.AzureManagerInstance.AzureClient.CurrentUser = user;
 
         authenticated = true;
     }
